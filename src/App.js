@@ -10,7 +10,6 @@ class App extends Component {
     return (
       <div className="App">
 			<Appbar style={{position: 'fixed !important'}}/>
-
 			<Example/>
       </div>
     );
