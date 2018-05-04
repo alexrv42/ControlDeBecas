@@ -1,9 +1,9 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 1s linear;
+  animation: App-logo-spin infinite 2s linear;
   height: 80px;
 }
 
