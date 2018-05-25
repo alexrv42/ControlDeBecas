@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../FormulariosTec/.idea/FormulariosTec.iml" filepath="$PROJECT_DIR$/../FormulariosTec/.idea/FormulariosTec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ControlDeBecas.iml" filepath="$PROJECT_DIR$/.idea/ControlDeBecas.iml" />
     </modules>
   </component>
 </project>
