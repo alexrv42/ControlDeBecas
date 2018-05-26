@@ -1,5 +1,5 @@
 {
-  "root": "src/server",
+  "root": "/",
   "routes": {
     "/**": "public/index.html"
   }
