@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../../public/App.css';
 import Example from "./Example";
 import {Appbar} from 'muicss/react'
 
