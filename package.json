@@ -24,7 +24,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.2.1",
-    "webpack": "^1.12.9",
     "babel-loader": "^6.2.0",
     "babel-plugin-react-css-modules": "^3.4.2",
     "babel-preset-env": "^1.7.0",
