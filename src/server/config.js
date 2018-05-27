@@ -10,10 +10,10 @@ module.exports = {
     port: process.env.PORT || 3000,
     db: {
         get : mysql.createConnection({
-			host     : 'localhost',
-			user     : 'root',
-			password : 'Alexrv4299',
-			database : 'control_becas'
+			host     : 'controldebecas.ca1gntsnc3pu.us-west-2.rds.amazonaws.com',
+			user     : 'alexrv499',
+			password : 'aarv4299',
+			database : 'ControlDeBecas'
 		})
     }
 };
