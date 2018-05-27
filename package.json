@@ -1,7 +1,7 @@
 {
   "name": "ControlDeBecas",
   "version": "0.1.0",
-  "main": "src/client/index.js",
+  "main": "src/server/requests.js",
   "engines": {
     "node": "8.9.4"
   },
