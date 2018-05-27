@@ -11,7 +11,7 @@ module.exports = {
     db: {
         get : mysql.createConnection({
 			host     : 'controldebecas.ca1gntsnc3pu.us-west-2.rds.amazonaws.com',
-			user     : 'alexrv499',
+			user     : 'alexrv99',
 			password : 'aarv4299',
 			database : 'ControlDeBecas'
 		})
