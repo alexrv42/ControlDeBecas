@@ -52,7 +52,7 @@ server.get('/alumnos', function (req, res) {
 
 //rest api to get a single employee data
 server.get('/alumnos/:id', function (req, res) {
-	connection.query('select * from alumnos where numero_control=?', [req.params.id], function (error, results, fields) {
+	connection.query('select * from ALUMNOS where numero_control=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
 	});
