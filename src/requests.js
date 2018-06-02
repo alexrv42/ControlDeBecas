@@ -6,7 +6,9 @@ const config  = require('./config'),
       mysql      = require('mysql');
 
 
-/**
+const fs = require('fs');
+
+/**w
  * Initialize Server
  */
 const server = restify.createServer({
@@ -14,6 +16,8 @@ const server = restify.createServer({
     version : config.version,
     url : config.hostname
 });
+
+
 
 var connection = config.db.get;
 server.use(restify.plugins.acceptParser(server.acceptable));
@@ -43,7 +47,7 @@ server.get('/estados/:id', function (req, res) {
 
 
 //rest api to get all results
-server.get('/|', function (req, res) {
+server.get('/alumnos', function (req, res) {
 	connection.query('select * from ALUMNOS', function (error, results, fields) {
 		if (error) console.log('err');
 		res.end(JSON.stringify(results));
@@ -138,6 +142,7 @@ server.put('/employees', function (req, res) {
 // });
 
 server.get('/', function(req, res){
+
     console.log('Hello from REST API');
 });
 
