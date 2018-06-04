@@ -36,7 +36,9 @@ server.use(
   return next();
 });*/
 
-//rest api to get all results
+
+
+
 server.get('/estados', function (req, res) {
    connection.query('select * from ESTADOS', function (error, results, fields) {
 	  if (error) console.log('err');
@@ -44,7 +46,13 @@ server.get('/estados', function (req, res) {
 	});
 });
 
-//rest api to get a single employee data
+server.get('/estados/columns', function (req, res) {
+	connection.query('SHOW COLUMNS FROM ESTADOS', function (error, results, fields) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+	});
+});
+
 server.get('/estados/:id', function (req, res) {
    connection.query('select * from ESTADOS where clave_estado=?', [req.params.id], function (error, results, fields) {
 	  if (error) throw error;
@@ -53,15 +61,25 @@ server.get('/estados/:id', function (req, res) {
 });
 
 
-//rest api to get all results
+
+
+
+
 server.get('/alumnos', function (req, res) {
 	connection.query('select * from ALUMNOS', function (error, results, fields) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+		res.end(JSON.stringify(fields));
+	});
+});
+
+server.get('/alumnos/columns', function (req, res) {
+	connection.query('SHOW COLUMNS FROM ALUMNOS', function (error, results, fields) {
 		if (error) console.log('err');
 		res.end(JSON.stringify(results));
 	});
 });
 
-//rest api to get a single employee data
 server.get('/alumnos/:id', function (req, res) {
 	connection.query('select * from ALUMNOS where numero_control=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
@@ -70,16 +88,26 @@ server.get('/alumnos/:id', function (req, res) {
 });
 
 
-//rest api to get all results
-server.get('/becas', function (req, res) {
+
+
+
+
+
+server.get('/becarios', function (req, res) {
 	connection.query('select * from BECARIOS', function (error, results, fields) {
 		if (error) console.log('err');
 		res.end(JSON.stringify(results));
 	});
 });
 
-//rest api to get a single employee data
-server.get('/becas/:id', function (req, res) {
+server.get('/becarios/columns', function (req, res) {
+	connection.query('SHOW COLUMNS FROM BECARIOS', function (error, results, fields) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+	});
+});
+
+server.get('/becarios/:id', function (req, res) {
 	connection.query('select * from BECARIOS where clave_beca=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
@@ -88,24 +116,40 @@ server.get('/becas/:id', function (req, res) {
 
 
 
-//rest api to get all results
-server.get('/tiposBecas', function (req, res) {
+
+
+
+
+
+
+server.get('/becas', function (req, res) {
 	connection.query('select * from BECAS', function (error, results, fields) {
 		if (error) console.log('err');
 		res.end(JSON.stringify(results));
 	});
 });
 
-//rest api to get a single employee data
-server.get('/tiposBecas/:id', function (req, res) {
-	connection.query('select * from BECAS where clave_beca=?', [req.params.id], function (error, results, fields) {
+server.get('/becas/columns', function (req, res) {
+	connection.query('SHOW COLUMNS FROM BECAS', function (error, results) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+	});
+});
+
+
+server.get('/becas/:id', function (req, res) {
+	connection.query('select * from BECAS where CLAVE_BECA=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
 	});
 });
 
 
-//rest api to get all results
+
+
+
+
+
 server.get('/instituciones', function (req, res) {
 	connection.query('select * from INSTITUCIONES', function (error, results, fields) {
 		if (error) console.log('err');
@@ -113,7 +157,15 @@ server.get('/instituciones', function (req, res) {
 	});
 });
 
-//rest api to get a single employee data
+
+server.get('/instituciones/columns', function (req, res) {
+	connection.query('SHOW COLUMNS FROM INSTITUCIONES', function (error, results, fields) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+	});
+});
+
+
 server.get('/instituciones/:id', function (req, res) {
 	connection.query('select * from INSTITUCIONES where clave_institucion=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
@@ -149,7 +201,6 @@ server.put('/employees', function (req, res) {
 // });
 
 server.get('/', function(req, res){
-
     console.log('Hello from REST API');
 });
 
