@@ -72,7 +72,7 @@ server.get('/alumnos/:id', function (req, res) {
 
 //rest api to get all results
 server.get('/becas', function (req, res) {
-	connection.query('select * from BECAS', function (error, results, fields) {
+	connection.query('select * from BECARIOS', function (error, results, fields) {
 		if (error) console.log('err');
 		res.end(JSON.stringify(results));
 	});
@@ -80,7 +80,7 @@ server.get('/becas', function (req, res) {
 
 //rest api to get a single employee data
 server.get('/becas/:id', function (req, res) {
-	connection.query('select * from BECAS where clave_beca=?', [req.params.id], function (error, results, fields) {
+	connection.query('select * from BECARIOS where clave_beca=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
 	});
@@ -90,7 +90,7 @@ server.get('/becas/:id', function (req, res) {
 
 //rest api to get all results
 server.get('/tiposBecas', function (req, res) {
-	connection.query('select * from TIPOS_BECAS', function (error, results, fields) {
+	connection.query('select * from BECAS', function (error, results, fields) {
 		if (error) console.log('err');
 		res.end(JSON.stringify(results));
 	});
@@ -98,7 +98,7 @@ server.get('/tiposBecas', function (req, res) {
 
 //rest api to get a single employee data
 server.get('/tiposBecas/:id', function (req, res) {
-	connection.query('select * from TIPOS_BECAS where clave_beca=?', [req.params.id], function (error, results, fields) {
+	connection.query('select * from BECAS where clave_beca=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
 	});
