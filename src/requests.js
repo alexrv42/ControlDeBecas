@@ -8,7 +8,17 @@ const config  = require('./config'),
 
 const fs = require('fs');
 
-/**w
+
+
+var corsMiddleware = require('restify-cors-middleware');
+
+var cors = corsMiddleware({
+	preflightMaxAge: 5,
+	origins: ['*']
+});
+
+
+/**
  * Initialize Server
  */
 const server = restify.createServer({
@@ -17,19 +27,29 @@ const server = restify.createServer({
     url : config.hostname
 });
 
+server.pre(cors.preflight);
+server.use(cors.actual);
+
 
 
 var connection = config.db.get;
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
-server.use(
-	function crossOrigin(req,res,next){
-		res.header("Access-Control-Allow-Origin", "*");
-		res.header("Access-Control-Allow-Headers", "X-Requested-With");
-		return next();
-	}
-);
+// server.use(
+// 	function crossOrigin(req,res,next){
+// 		console.log('Allowing CORS');
+// 		res.header("Access-Control-Allow-Origin", "*");
+// 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+// 		res.header('Access-Control-Allow-Methods', "*");
+// 		return next();
+// 	}
+// );
+
+
+
+
+
 
 /*server.get('/echo/:name', function (req, res, next) {
   res.send(req.params);
@@ -99,8 +119,11 @@ server.get('/alumnos/:id', function (req, res) {
 
 
 server.post('/alumnos', function (req, res) {
-	const postData = req.body;
+	console.log('/alumnos POST');
+	let postData = req.body;
+	// postData = postData.replace("\\", "");
 	console.log(JSON.stringify(postData));
+	// postData = '{"NUMERO_CONTROL":101868, "NOMBRES":"Eduardo","APELLIDO_MATERNO":"Valerio"}';
 	connection.query('INSERT INTO ALUMNOS SET ?', postData, function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
