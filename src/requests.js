@@ -61,6 +61,16 @@ server.get('/estados/:id', function (req, res) {
 });
 
 
+server.post('/estados', function (req, res) {
+	const postData = req.body;
+	console.log(JSON.stringify(postData));
+	connection.query('INSERT INTO ESTADOS SET ?', postData, function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
+	});
+});
+
+
 
 
 
@@ -82,6 +92,16 @@ server.get('/alumnos/columns', function (req, res) {
 
 server.get('/alumnos/:id', function (req, res) {
 	connection.query('select * from ALUMNOS where numero_control=?', [req.params.id], function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
+	});
+});
+
+
+server.post('/alumnos', function (req, res) {
+	const postData = req.body;
+	console.log(JSON.stringify(postData));
+	connection.query('INSERT INTO ALUMNOS SET ?', postData, function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
 	});
@@ -115,6 +135,15 @@ server.get('/becarios/:id', function (req, res) {
 });
 
 
+server.post('/becarios', function (req, res) {
+	const postData = req.body;
+	console.log(JSON.stringify(postData));
+	connection.query('INSERT INTO BECARIOS SET ?', postData, function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
+	});
+});
+
 
 
 
@@ -145,6 +174,15 @@ server.get('/becas/:id', function (req, res) {
 });
 
 
+server.post('/becas', function (req, res) {
+	const postData = req.body;
+	console.log(JSON.stringify(postData));
+	connection.query('INSERT INTO BECAS SET ?', postData, function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
+	});
+});
+
 
 
 
@@ -174,23 +212,25 @@ server.get('/instituciones/:id', function (req, res) {
 });
 
 
-// //rest api to create a new record into mysql database
-// server.post('/employees', function (req, res) {
-//    var postData  = req.body;
-//    console.log(JSON.stringify(postData))
-// 	// connection.query('INSERT INTO employee SET ?', postData, function (error, results, fields) {
-// 	//   if (error) throw error;
-// 	//   res.end(JSON.stringify(results));
-// 	// });
-// });
-
-//rest api to update record into mysql database
-server.put('/employees', function (req, res) {
-   connection.query('UPDATE `employee` SET `employee_name`=?,`employee_salary`=?,`employee_age`=? where `id`=?', [req.body.employee_name,req.body.employee_salary, req.body.employee_age, req.body.id], function (error, results, fields) {
-	  if (error) throw error;
-	  res.end(JSON.stringify(results));
+server.post('/instituciones', function (req, res) {
+	const postData = req.body;
+	console.log(JSON.stringify(postData));
+	connection.query('INSERT INTO INSTITUCIONES SET ?', postData, function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
 	});
 });
+
+
+
+//rest api to update record into mysql database
+// server.put('/alumnos', function (req, res) {
+// 	const postData = req.body;
+//    connection.query('UPDATE ALUMNOS SET `NOMBRES`=?`APELLIDO_MATERNO`=? WHERE `NUMERO_CONTROL`=?', postData, function (error, results, fields) {
+// 	  if (error) throw error;
+// 	  res.end(JSON.stringify(results));
+// 	});
+// });
 
 // //rest api to delete record from mysql database
 // server.delete('/employees/:id', function (req, res) {
