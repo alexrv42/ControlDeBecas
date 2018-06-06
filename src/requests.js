@@ -95,10 +95,12 @@ server.post('/alumnos', function (req, res) {
 	});
 });
 
-server.delete('/alumnos/:id', function (req, res) {
-   connection.query('DELETE FROM ALUMNOS WHERE `id`=?', [req.params.id], function (error, results, fields) {
+server.del('/alumnos/:id', function (req, res) {
+	console.log('[req.params.id]: ' + [req.params.id]);
+   connection.query('DELETE FROM ALUMNOS WHERE NUMERO_CONTROL=?', [req.params.id], function (error, results, fields) {
     if (error) throw error;
-    res.end('Record has been deleted!');
+    console.log('Record has been deleted!');
+    res.end(JSON.stringify({success: true}));
   });
 });
 
@@ -139,6 +141,15 @@ server.post('/becarios', function (req, res) {
 	});
 });
 
+server.del('/becarios/:id', function (req, res) {
+	connection.query('DELETE FROM BECARIOS WHERE NUMERO_CONTROL=?', [req.params.id], function (error, results, fields) {
+		if (error) throw error;
+		console.log('Record has been deleted!');
+		res.end(JSON.stringify({success: true}));
+	});
+});
+
+
 
 
 
@@ -178,6 +189,13 @@ server.post('/becas', function (req, res) {
 	});
 });
 
+server.del('/becas/:id', function (req, res) {
+	connection.query('DELETE FROM BECAS WHERE CLAVE_BECA=?', [req.params.id], function (error, results, fields) {
+		if (error) throw error;
+		console.log('Record has been deleted!');
+		res.end(JSON.stringify({success: true}));
+	});
+});
 
 
 
@@ -204,7 +222,7 @@ server.get('/instituciones/columns', function (req, res) {
 
 
 server.get('/instituciones/:id', function (req, res) {
-	connection.query('select * from INSTITUCIONES where clave_institucion=?', [req.params.id], function (error, results, fields) {
+	connection.query('select * from INSTITUCIONES where CLAVE_INSTITUCION=?', [req.params.id], function (error, results, fields) {
 		if (error) throw error;
 		res.end(JSON.stringify(results));
 	});
@@ -220,6 +238,13 @@ server.post('/instituciones', function (req, res) {
 	});
 });
 
+server.del('/instituciones/:id', function (req, res) {
+	connection.query('DELETE FROM INSTITUCIONES WHERE CLAVE_INSTITUCION=?', [req.params.id], function (error, results, fields) {
+		if (error) throw error;
+		console.log('Record has been deleted!');
+		res.end(JSON.stringify({success: true}));
+	});
+});
 
 
 
@@ -258,6 +283,15 @@ server.post('/estados', function (req, res) {
 		res.end(JSON.stringify(results));
 	});
 });
+
+server.del('/estados/:id', function (req, res) {
+	connection.query('DELETE FROM ESTADOS where CLAVE_ESTADO=?', [req.params.id], function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify({success: true}));
+		console.log('Record has been deleted!');
+	});
+});
+
 
 
 
