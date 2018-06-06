@@ -6,10 +6,6 @@ const config  = require('./config'),
       mysql      = require('mysql');
 
 
-const fs = require('fs');
-
-
-
 var corsMiddleware = require('restify-cors-middleware');
 
 var cors = corsMiddleware({
@@ -59,41 +55,10 @@ server.use(restify.plugins.bodyParser());
 
 
 
-server.get('/estados', function (req, res) {
-   connection.query('select * from ESTADOS', function (error, results, fields) {
-	  if (error) console.log('err');
-	  res.end(JSON.stringify(results));
-	});
-});
-
-server.get('/estados/columns', function (req, res) {
-	connection.query('SHOW COLUMNS FROM ESTADOS', function (error, results, fields) {
-		if (error) console.log('err');
-		res.end(JSON.stringify(results));
-	});
-});
-
-server.get('/estados/:id', function (req, res) {
-   connection.query('select * from ESTADOS where clave_estado=?', [req.params.id], function (error, results, fields) {
-	  if (error) throw error;
-	  res.end(JSON.stringify(results));
-	});
-});
-
-
-server.post('/estados', function (req, res) {
-	const postData = req.body;
-	console.log(JSON.stringify(postData));
-	connection.query('INSERT INTO ESTADOS SET ?', postData, function (error, results, fields) {
-		if (error) throw error;
-		res.end(JSON.stringify(results));
-	});
-});
 
 
 
-
-
+/* ALUMNOS */
 
 server.get('/alumnos', function (req, res) {
 	connection.query('select * from ALUMNOS', function (error, results, fields) {
@@ -130,11 +95,18 @@ server.post('/alumnos', function (req, res) {
 	});
 });
 
+server.delete('/alumnos/:id', function (req, res) {
+   connection.query('DELETE FROM ALUMNOS WHERE `id`=?', [req.params.id], function (error, results, fields) {
+    if (error) throw error;
+    res.end('Record has been deleted!');
+  });
+});
 
 
 
 
 
+/* BECARIOS */
 
 server.get('/becarios', function (req, res) {
 	connection.query('select * from BECARIOS', function (error, results, fields) {
@@ -172,7 +144,7 @@ server.post('/becarios', function (req, res) {
 
 
 
-
+/* BECAS */
 
 server.get('/becas', function (req, res) {
 	connection.query('select * from BECAS', function (error, results, fields) {
@@ -211,6 +183,10 @@ server.post('/becas', function (req, res) {
 
 
 
+
+
+/* INSTITUCIONES */
+
 server.get('/instituciones', function (req, res) {
 	connection.query('select * from INSTITUCIONES', function (error, results, fields) {
 		if (error) console.log('err');
@@ -246,22 +222,52 @@ server.post('/instituciones', function (req, res) {
 
 
 
-//rest api to update record into mysql database
-// server.put('/alumnos', function (req, res) {
-// 	const postData = req.body;
-//    connection.query('UPDATE ALUMNOS SET `NOMBRES`=?`APELLIDO_MATERNO`=? WHERE `NUMERO_CONTROL`=?', postData, function (error, results, fields) {
-// 	  if (error) throw error;
-// 	  res.end(JSON.stringify(results));
-// 	});
-// });
 
-// //rest api to delete record from mysql database
-// server.delete('/employees/:id', function (req, res) {
-//    connection.query('DELETE FROM `employee` WHERE `id`=?', [req.params.id], function (error, results, fields) {
-//     if (error) throw error;
-//     res.end('Record has been deleted!');
-//   });
-// });
+
+
+
+
+/* ESTADOS */
+server.get('/estados', function (req, res) {
+	connection.query('select * from ESTADOS', function (error, results, fields) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+	});
+});
+
+server.get('/estados/columns', function (req, res) {
+	connection.query('SHOW COLUMNS FROM ESTADOS', function (error, results, fields) {
+		if (error) console.log('err');
+		res.end(JSON.stringify(results));
+	});
+});
+
+server.get('/estados/:id', function (req, res) {
+	connection.query('select * from ESTADOS where clave_estado=?', [req.params.id], function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
+	});
+});
+
+
+server.post('/estados', function (req, res) {
+	const postData = req.body;
+	console.log(JSON.stringify(postData));
+	connection.query('INSERT INTO ESTADOS SET ?', postData, function (error, results, fields) {
+		if (error) throw error;
+		res.end(JSON.stringify(results));
+	});
+});
+
+
+
+
+
+
+
+
+
+
 
 server.get('/', function(req, res){
     console.log('Hello from REST API');
